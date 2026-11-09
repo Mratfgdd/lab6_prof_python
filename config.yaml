@@ -1,0 +1,5 @@
+input_path: data/students.csv
+output_path: output/report.json
+skip_invalid: true
+pass_threshold: 60
+allowed_groups: [PI-21, PI-22, PI-23]

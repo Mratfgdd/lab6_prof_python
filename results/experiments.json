@@ -1,0 +1,63 @@
+{
+  "weak_vs_strong": {
+    "normal": {
+      "test_average_weak": "passed",
+      "test_average_strong": "passed"
+    },
+    "mutant": {
+      "test_average_weak": "passed",
+      "test_average_strong": "failed"
+    },
+    "models_coverage": {
+      "test_average_weak": 75.9,
+      "test_average_strong": 75.9
+    }
+  },
+  "branch_partial": {
+    "covered": 4,
+    "total": 6,
+    "percent": 66.7,
+    "missing": [
+      [
+        29,
+        30
+      ],
+      [
+        31,
+        32
+      ]
+    ]
+  },
+  "branch_full": {
+    "covered": 6,
+    "total": 6,
+    "percent": 100.0,
+    "missing": []
+  },
+  "mock_vs_fake": {
+    "before": {
+      "test_get_with_mock_repository": "passed",
+      "test_get_with_fake_repository": "passed"
+    },
+    "after_refactoring": {
+      "test_get_with_mock_repository": "failed",
+      "test_get_with_fake_repository": "passed"
+    }
+  },
+  "flaky": {
+    "runs": 20,
+    "failures": {
+      "test_flaky_random_student_ids": 3,
+      "test_deterministic_student_ids": 0
+    }
+  },
+  "isolation": {
+    "tmp_paths": [
+      "pytest-84/test_export_into_tmp_path0",
+      "pytest-85/test_export_into_tmp_path0",
+      "pytest-86/test_export_into_tmp_path0"
+    ],
+    "distinct": true,
+    "repository_changed": []
+  }
+}

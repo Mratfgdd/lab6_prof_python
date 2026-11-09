@@ -1,0 +1,16 @@
+Name                              Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------------------
+src\student_app\__init__.py           3      0      0      0   100%
+src\student_app\app.py               33      0      2      0   100%
+src\student_app\config.py            66      0     20      0   100%
+src\student_app\exceptions.py        28      0      0      0   100%
+src\student_app\files.py             75      0     14      0   100%
+src\student_app\grading.py           25      0     12      0   100%
+src\student_app\models.py            41      0     10      0   100%
+src\student_app\reports.py           29      0      6      0   100%
+src\student_app\repositories.py      33      0      4      0   100%
+src\student_app\services.py          75      0      8      0   100%
+-----------------------------------------------------------------------------
+TOTAL                               408      0     76      0   100%
+Required test coverage of 90.0% reached. Total coverage: 100.00%
+186 passed in 1.96s
