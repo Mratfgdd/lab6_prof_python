@@ -3,7 +3,7 @@ requires = ["setuptools>=70"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "student-app-tested"
+name = "student-manager"
 version = "0.6.0"
 description = "Laboratory work 6 (Professional Python): automated testing of the student records system"
 readme = "README.md"
@@ -12,18 +12,22 @@ authors = [{ name = "Nazar Levandivskyi" }]
 dependencies = ["PyYAML>=6.0"]
 
 [project.optional-dependencies]
+test = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "pytest-asyncio>=0.23",
+]
 dev = [
     "pytest>=8",
     "pytest-cov>=5",
     "pytest-asyncio>=0.23",
-    "ruff>=0.5",
     "mypy>=1.10",
+    "ruff>=0.5",
     "types-PyYAML>=6.0",
 ]
-test = ["pytest>=8", "pytest-cov>=5", "pytest-asyncio>=0.23"]
 
 [project.scripts]
-student-report = "student_app.app:main"
+student-manager = "student_manager.main:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -31,18 +35,17 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 norecursedirs = [".*", "*.egg-info", "build", "dist", "experiments", "report", "results", "data", "htmlcov"]
-pythonpath = ["src"]
+pythonpath = ["src", "tests"]
 addopts = ["-ra", "--strict-markers"]
 markers = [
-    "integration: декілька компонентів разом, реальні файли в tmp_path",
-    "asyncio: async-тести (pytest-asyncio)",
+    "integration: integration tests (кілька компонентів, реальні файли в tmp_path)",
 ]
 asyncio_mode = "strict"
 asyncio_default_fixture_loop_scope = "function"
 
 [tool.coverage.run]
 branch = true
-source = ["student_app"]
+source = ["student_manager"]
 
 [tool.coverage.report]
 show_missing = true
@@ -53,9 +56,42 @@ exclude_also = ['if __name__ == "__main__":']
 [tool.coverage.html]
 directory = "htmlcov"
 
+[tool.mypy]
+strict = true
+mypy_path = ["src", "tests", "report"]
+files = ["src", "tests", "experiments", "report"]
+
+[[tool.mypy.overrides]]
+module = "build_report"
+disallow_untyped_calls = false
+
 [tool.ruff]
-line-length = 100
+line-length = 79
 target-version = "py311"
+src = ["src", "tests", "report"]
 
 [tool.ruff.lint]
-select = ["E", "F", "W", "I", "B", "UP", "PT"]
+select = ["E", "F", "W", "I", "B", "UP", "PT", "D"]
+
+[tool.ruff.lint.isort]
+known-third-party = ["support"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+"experiments/**" = ["D"]
+
+[tool.pylint.main]
+source-roots = ["src", "tests", "report"]
+
+[tool.pylint.basic]
+no-docstring-rgx = "^(_|test_)"
+
+[tool.pylint.messages_control]
+disable = ["redefined-outer-name"]
+
+[tool.pylint.design]
+min-public-methods = 1
+max-attributes = 10

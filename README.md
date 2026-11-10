@@ -1,9 +1,15 @@
-# Лабораторна робота №6. Автоматизоване тестування Python-програм
+# Student Manager (лабораторна робота №6)
 
-Варіант 1 — «Система обліку студентів». Тестується застосунок `student_app`: модель
-`Student` з валідацією, репозиторії (синхронний та асинхронний), сервіси з `Notifier`,
-імпорт студентів із CSV, експорт звіту в JSON, конфігурація YAML зі змінними середовища
-і CLI-потік CSV → валідація → звіт.
+Автоматизоване тестування Python-програм (pytest). Варіант 1 – система обліку
+студентів: проєкт `student_manager` з ЛР1 (`Student` з полями `first_name`,
+`last_name`, `group`, `average_grade`; функції `calculate_group_average`,
+`find_best_student`, `filter_by_group`) доповнений пошуком за ID, репозиторіями
+(синхронним і асинхронним), сповіщеннями `Notifier`, CSV import, JSON export,
+YAML-конфігурацією зі змінними середовища та async-сервісом.
+
+## Вимоги
+
+Python 3.11+
 
 ## Встановлення
 
@@ -13,10 +19,29 @@ python -m venv .venv
 python -m pip install -e ".[dev]"
 ```
 
-Або без встановлення пакета: `python -m pip install -r requirements.txt` і далі `pytest` з кореня
-проєкту (`pythonpath = ["src"]` у `pyproject.toml`).
+Без встановлення пакета: `python -m pip install -r requirements.txt` і далі
+`pytest` з кореня проєкту (`pythonpath = ["src", "tests"]` у `pyproject.toml`).
 
-## Запуск
+## Запуск застосунку
+
+```
+python -m student_manager.main
+student-manager --config config.yaml
+```
+
+Змінні середовища перевизначають `config.yaml`: `STUDENT_MANAGER_INPUT_PATH`,
+`STUDENT_MANAGER_OUTPUT_PATH`, `STUDENT_MANAGER_SKIP_INVALID`,
+`STUDENT_MANAGER_PASS_THRESHOLD`.
+
+## Запуск тестів
+
+Усі тести разом із statement і branch coverage та HTML-звітом (одна команда):
+
+```
+pytest -v --cov=student_manager --cov-branch --cov-report=term-missing --cov-report=html
+```
+
+Інші корисні команди:
 
 ```
 pytest
@@ -24,34 +49,32 @@ pytest -m "not integration"
 pytest -m integration
 pytest tests/unit/test_services.py
 pytest tests/unit/test_models.py::test_student_is_immutable
-pytest --cov=student_app --cov-branch --cov-report=term-missing --cov-report=html
 ```
 
-`pytest` без аргументів запускає весь набір (195 тестів). Поріг покриття — 90 % (`fail_under` у
-`pyproject.toml`). HTML-звіт створюється в `htmlcov/index.html`.
+Поріг покриття – 90 % (`fail_under` у `pyproject.toml`). HTML-звіт створюється
+в `htmlcov/index.html`.
 
-Застосунок:
-
-```
-student-report --config config.yaml
-```
-
-Змінні середовища перевизначають `config.yaml`: `STUDENT_APP_INPUT_PATH`,
-`STUDENT_APP_OUTPUT_PATH`, `STUDENT_APP_SKIP_INVALID`, `STUDENT_APP_PASS_THRESHOLD`.
-
-## Структура
+## Структура проєкту
 
 ```
-src/student_app/   models, grading, repositories, services, reports, files, config, app
+src/student_manager/
+    models.py        Student, classify_grade
+    validators.py    перевірка ID, імен, групи й середнього бала 0-100
+    services.py      пошук, фільтрація, статистика, StudentService, Notifier
+    repositories.py  StudentRepository, AsyncStudentRepository, in-memory
+    importers.py     CSV import
+    exporters.py     атомарний JSON export
+    reports.py       зведений звіт
+    config.py        YAML і змінні середовища
+    main.py          потік CSV -> звіт, CLI
 tests/
-  conftest.py      спільні fixtures
-  fakes.py         fake-репозиторій і fake-notifier
-  unit/            моделі, оцінювання, репозиторії, сервіси, async, звіти, конфігурація, CSV, JSON
-  integration/     імпорт → валідація → звіт, CLI, async-потік
-experiments/       демонстраційні сценарії case_*.py (слабкий/сильний тест, branch coverage,
-                   Mock vs fake, flaky, tmp_path); не входять до test suite, запускаються
-                   лише через run_experiments.py
-report/            генератор PDF-звіту
+    conftest.py      спільні fixtures
+    support.py       fake, spy і типи фабрик
+    unit/            models, validators, services, repositories, async,
+                     configuration, importers, exporters, reports
+    integration/     import_pipeline, export_pipeline, application_flow
+experiments/         сценарії case_*.py і run_experiments.py (не входять до suite)
+report/              генератор PDF-звіту
 ```
 
 ## Експерименти
@@ -60,11 +83,16 @@ report/            генератор PDF-звіту
 python experiments/run_experiments.py
 ```
 
-Результати зберігаються в `results/experiments.json`; `results/first_run.txt` — вивід
-першого запуску тестів, що виявив дефекти в production-коді.
+Результати зберігаються в `results/experiments.json`; `results/first_run.txt` –
+перший запуск suite (усе зелене, coverage 100 %), `results/negative_run.txt` –
+запуск після додавання негативних тестів, які виявили дефекти.
 
 ## Звіт
 
 ```
 python report/build_report.py --venv .venv
 ```
+
+## Автор
+
+Левандівський Назар
