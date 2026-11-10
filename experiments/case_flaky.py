@@ -1,13 +1,18 @@
+"""Експеримент 5: тест, що залежить від випадковості, та його виправлення."""
+
 import random
 
-from student_app.models import Student
-from student_app.repositories import InMemoryStudentRepository
+from student_manager.models import Student
+from student_manager.repositories import InMemoryStudentRepository
 
 
 def register_students(student_ids: list[int]) -> InMemoryStudentRepository:
+    """Реєструє студентів із заданими id у новому сховищі."""
     repository = InMemoryStudentRepository()
     for student_id in student_ids:
-        repository.add(Student(student_id, "Олена", "Коваленко", "PI-21", (90.0,)))
+        repository.add(
+            Student(student_id, "Олена", "Коваленко", "PI-21", 90.0)
+        )
     return repository
 
 

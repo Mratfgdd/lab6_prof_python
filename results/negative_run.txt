@@ -1,0 +1,514 @@
+.................................................FFFFFFFF............FFF [ 25%]
+E....................................................................... [ 49%]
+........................................................................ [ 74%]
+......................FF.FFFFFF......................................... [ 99%]
+.                                                                        [100%]
+=================================== ERRORS ====================================
+_ ERROR at teardown of test_circular_structure_raises_export_error_and_keeps_old_file _
+
+tmp_path = WindowsPath('C:/Users/Nazar/AppData/Local/Temp/pytest-of-Nazar/pytest-223/test_circular_structure_raises0')
+
+    @pytest.fixture
+    def output_dir(tmp_path: Path) -> Iterator[Path]:
+        """Каталог експорту; після тесту перевіряє, що не лишилось *.tmp."""
+        directory = tmp_path / "output"
+        yield directory
+        leftovers = list(directory.glob("*.tmp")) if directory.exists() else []
+>       assert leftovers == [], f"тимчасові файли не видалено: {leftovers}"
+E       AssertionError: тимчасові файли не видалено: [WindowsPath('C:/Users/Nazar/AppData/Local/Temp/pytest-of-Nazar/pytest-223/test_circular_structure_raises0/output/report.json.tmp')]
+E       assert [WindowsPath(...rt.json.tmp')] == []
+E         
+E         Left contains one more item: WindowsPath('C:/Users/Nazar/AppData/Local/Temp/pytest-of-Nazar/pytest-223/test_circular_structure_raises0/output/report.json.tmp')
+E         Use -v to get more diff
+
+tests\conftest.py:136: AssertionError
+================================== FAILURES ===================================
+_______ test_non_text_path_raises_configuration_error[list-input_path] ________
+
+config_writer = <function config_writer.<locals>.write at 0x00000232AF0E2020>
+key = 'input_path', value = '[a.csv]'
+
+    @pytest.mark.parametrize("key", ["input_path", "output_path"])
+    @pytest.mark.parametrize(
+        "value", ["[a.csv]", "123", "{a: b}", "true"], ids=["list", "int", "map", "bool"]
+    )
+    def test_non_text_path_raises_configuration_error(
+        config_writer: ConfigWriter, key: str, value: str
+    ) -> None:
+>       with pytest.raises(ConfigurationError, match=key):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ConfigurationError
+
+tests\unit\test_configuration.py:137: Failed
+_______ test_non_text_path_raises_configuration_error[list-output_path] _______
+
+config_writer = <function config_writer.<locals>.write at 0x00000232AF0E31A0>
+key = 'output_path', value = '[a.csv]'
+
+    @pytest.mark.parametrize("key", ["input_path", "output_path"])
+    @pytest.mark.parametrize(
+        "value", ["[a.csv]", "123", "{a: b}", "true"], ids=["list", "int", "map", "bool"]
+    )
+    def test_non_text_path_raises_configuration_error(
+        config_writer: ConfigWriter, key: str, value: str
+    ) -> None:
+>       with pytest.raises(ConfigurationError, match=key):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ConfigurationError
+
+tests\unit\test_configuration.py:137: Failed
+________ test_non_text_path_raises_configuration_error[int-input_path] ________
+
+config_writer = <function config_writer.<locals>.write at 0x00000232AF007880>
+key = 'input_path', value = '123'
+
+    @pytest.mark.parametrize("key", ["input_path", "output_path"])
+    @pytest.mark.parametrize(
+        "value", ["[a.csv]", "123", "{a: b}", "true"], ids=["list", "int", "map", "bool"]
+    )
+    def test_non_text_path_raises_configuration_error(
+        config_writer: ConfigWriter, key: str, value: str
+    ) -> None:
+>       with pytest.raises(ConfigurationError, match=key):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ConfigurationError
+
+tests\unit\test_configuration.py:137: Failed
+_______ test_non_text_path_raises_configuration_error[int-output_path] ________
+
+config_writer = <function config_writer.<locals>.write at 0x00000232AF0079C0>
+key = 'output_path', value = '123'
+
+    @pytest.mark.parametrize("key", ["input_path", "output_path"])
+    @pytest.mark.parametrize(
+        "value", ["[a.csv]", "123", "{a: b}", "true"], ids=["list", "int", "map", "bool"]
+    )
+    def test_non_text_path_raises_configuration_error(
+        config_writer: ConfigWriter, key: str, value: str
+    ) -> None:
+>       with pytest.raises(ConfigurationError, match=key):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ConfigurationError
+
+tests\unit\test_configuration.py:137: Failed
+________ test_non_text_path_raises_configuration_error[map-input_path] ________
+
+config_writer = <function config_writer.<locals>.write at 0x00000232AF005F80>
+key = 'input_path', value = '{a: b}'
+
+    @pytest.mark.parametrize("key", ["input_path", "output_path"])
+    @pytest.mark.parametrize(
+        "value", ["[a.csv]", "123", "{a: b}", "true"], ids=["list", "int", "map", "bool"]
+    )
+    def test_non_text_path_raises_configuration_error(
+        config_writer: ConfigWriter, key: str, value: str
+    ) -> None:
+>       with pytest.raises(ConfigurationError, match=key):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ConfigurationError
+
+tests\unit\test_configuration.py:137: Failed
+_______ test_non_text_path_raises_configuration_error[map-output_path] ________
+
+config_writer = <function config_writer.<locals>.write at 0x00000232AF0E2E80>
+key = 'output_path', value = '{a: b}'
+
+    @pytest.mark.parametrize("key", ["input_path", "output_path"])
+    @pytest.mark.parametrize(
+        "value", ["[a.csv]", "123", "{a: b}", "true"], ids=["list", "int", "map", "bool"]
+    )
+    def test_non_text_path_raises_configuration_error(
+        config_writer: ConfigWriter, key: str, value: str
+    ) -> None:
+>       with pytest.raises(ConfigurationError, match=key):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ConfigurationError
+
+tests\unit\test_configuration.py:137: Failed
+_______ test_non_text_path_raises_configuration_error[bool-input_path] ________
+
+config_writer = <function config_writer.<locals>.write at 0x00000232AF0E0F40>
+key = 'input_path', value = 'true'
+
+    @pytest.mark.parametrize("key", ["input_path", "output_path"])
+    @pytest.mark.parametrize(
+        "value", ["[a.csv]", "123", "{a: b}", "true"], ids=["list", "int", "map", "bool"]
+    )
+    def test_non_text_path_raises_configuration_error(
+        config_writer: ConfigWriter, key: str, value: str
+    ) -> None:
+>       with pytest.raises(ConfigurationError, match=key):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ConfigurationError
+
+tests\unit\test_configuration.py:137: Failed
+_______ test_non_text_path_raises_configuration_error[bool-output_path] _______
+
+config_writer = <function config_writer.<locals>.write at 0x00000232AF0E1580>
+key = 'output_path', value = 'true'
+
+    @pytest.mark.parametrize("key", ["input_path", "output_path"])
+    @pytest.mark.parametrize(
+        "value", ["[a.csv]", "123", "{a: b}", "true"], ids=["list", "int", "map", "bool"]
+    )
+    def test_non_text_path_raises_configuration_error(
+        config_writer: ConfigWriter, key: str, value: str
+    ) -> None:
+>       with pytest.raises(ConfigurationError, match=key):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ConfigurationError
+
+tests\unit\test_configuration.py:137: Failed
+_________ test_non_finite_number_is_not_exported_as_invalid_json[nan] _________
+
+output_dir = WindowsPath('C:/Users/Nazar/AppData/Local/Temp/pytest-of-Nazar/pytest-223/test_non_finite_number_is_not_0/output')
+value = nan
+
+    @pytest.mark.parametrize("value", [math.nan, math.inf], ids=["nan", "inf"])
+    def test_non_finite_number_is_not_exported_as_invalid_json(
+        output_dir: Path, value: float
+    ) -> None:
+        target = output_dir / "report.json"
+>       with pytest.raises(ExportError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ExportError
+
+tests\unit\test_exporters.py:79: Failed
+_________ test_non_finite_number_is_not_exported_as_invalid_json[inf] _________
+
+output_dir = WindowsPath('C:/Users/Nazar/AppData/Local/Temp/pytest-of-Nazar/pytest-223/test_non_finite_number_is_not_1/output')
+value = inf
+
+    @pytest.mark.parametrize("value", [math.nan, math.inf], ids=["nan", "inf"])
+    def test_non_finite_number_is_not_exported_as_invalid_json(
+        output_dir: Path, value: float
+    ) -> None:
+        target = output_dir / "report.json"
+>       with pytest.raises(ExportError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ExportError
+
+tests\unit\test_exporters.py:79: Failed
+_______ test_circular_structure_raises_export_error_and_keeps_old_file ________
+
+output_dir = WindowsPath('C:/Users/Nazar/AppData/Local/Temp/pytest-of-Nazar/pytest-223/test_circular_structure_raises0/output')
+
+    def test_circular_structure_raises_export_error_and_keeps_old_file(
+        output_dir: Path,
+    ) -> None:
+        target = output_dir / "report.json"
+        write_json(target, {"version": 1})
+        payload: dict[str, Any] = {}
+        payload["self"] = payload
+        with pytest.raises(ExportError):
+>           write_json(target, payload)
+
+tests\unit\test_exporters.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\student_manager\exporters.py:22: in write_json
+    json.dump(payload, file, ensure_ascii=False, indent=2)
+C:\Users\Nazar\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py:179: in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+C:\Users\Nazar\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py:432: in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+C:\Users\Nazar\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py:406: in _iterencode_dict
+    yield from chunks
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+dct = {'self': {'self': {'self': {'self': {'self': {'self': {...}}}}}}}
+_current_indent_level = 1
+
+    def _iterencode_dict(dct, _current_indent_level):
+        if not dct:
+            yield '{}'
+            return
+        if markers is not None:
+            markerid = id(dct)
+            if markerid in markers:
+>               raise ValueError("Circular reference detected")
+E               ValueError: Circular reference detected
+
+C:\Users\Nazar\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py:341: ValueError
+____ test_parse_average_grade_rejects_everything_but_plain_decimals['-0'] _____
+
+text = '-0'
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "",
+            "abc",
+            "9o",
+            "nan",
+            "inf",
+            "101",
+            "-1",
+            "-0",
+            "+90",
+            "90,5",
+            "1e2",
+            "9_0",
+            "\u0669\u0660",
+            ".5",
+            "5.",
+        ],
+        ids=repr,
+    )
+    def test_parse_average_grade_rejects_everything_but_plain_decimals(
+        text: str,
+    ) -> None:
+>       with pytest.raises(InvalidGradeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE InvalidGradeError
+
+tests\unit\test_validators.py:98: Failed
+____ test_parse_average_grade_rejects_everything_but_plain_decimals['+90'] ____
+
+text = '+90'
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "",
+            "abc",
+            "9o",
+            "nan",
+            "inf",
+            "101",
+            "-1",
+            "-0",
+            "+90",
+            "90,5",
+            "1e2",
+            "9_0",
+            "\u0669\u0660",
+            ".5",
+            "5.",
+        ],
+        ids=repr,
+    )
+    def test_parse_average_grade_rejects_everything_but_plain_decimals(
+        text: str,
+    ) -> None:
+>       with pytest.raises(InvalidGradeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE InvalidGradeError
+
+tests\unit\test_validators.py:98: Failed
+____ test_parse_average_grade_rejects_everything_but_plain_decimals['1e2'] ____
+
+text = '1e2'
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "",
+            "abc",
+            "9o",
+            "nan",
+            "inf",
+            "101",
+            "-1",
+            "-0",
+            "+90",
+            "90,5",
+            "1e2",
+            "9_0",
+            "\u0669\u0660",
+            ".5",
+            "5.",
+        ],
+        ids=repr,
+    )
+    def test_parse_average_grade_rejects_everything_but_plain_decimals(
+        text: str,
+    ) -> None:
+>       with pytest.raises(InvalidGradeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE InvalidGradeError
+
+tests\unit\test_validators.py:98: Failed
+____ test_parse_average_grade_rejects_everything_but_plain_decimals['9_0'] ____
+
+text = '9_0'
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "",
+            "abc",
+            "9o",
+            "nan",
+            "inf",
+            "101",
+            "-1",
+            "-0",
+            "+90",
+            "90,5",
+            "1e2",
+            "9_0",
+            "\u0669\u0660",
+            ".5",
+            "5.",
+        ],
+        ids=repr,
+    )
+    def test_parse_average_grade_rejects_everything_but_plain_decimals(
+        text: str,
+    ) -> None:
+>       with pytest.raises(InvalidGradeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE InvalidGradeError
+
+tests\unit\test_validators.py:98: Failed
+_ test_parse_average_grade_rejects_everything_but_plain_decimals['\u0669\u0660'] _
+
+text = '\u0669\u0660'
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "",
+            "abc",
+            "9o",
+            "nan",
+            "inf",
+            "101",
+            "-1",
+            "-0",
+            "+90",
+            "90,5",
+            "1e2",
+            "9_0",
+            "\u0669\u0660",
+            ".5",
+            "5.",
+        ],
+        ids=repr,
+    )
+    def test_parse_average_grade_rejects_everything_but_plain_decimals(
+        text: str,
+    ) -> None:
+>       with pytest.raises(InvalidGradeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE InvalidGradeError
+
+tests\unit\test_validators.py:98: Failed
+____ test_parse_average_grade_rejects_everything_but_plain_decimals['.5'] _____
+
+text = '.5'
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "",
+            "abc",
+            "9o",
+            "nan",
+            "inf",
+            "101",
+            "-1",
+            "-0",
+            "+90",
+            "90,5",
+            "1e2",
+            "9_0",
+            "\u0669\u0660",
+            ".5",
+            "5.",
+        ],
+        ids=repr,
+    )
+    def test_parse_average_grade_rejects_everything_but_plain_decimals(
+        text: str,
+    ) -> None:
+>       with pytest.raises(InvalidGradeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE InvalidGradeError
+
+tests\unit\test_validators.py:98: Failed
+____ test_parse_average_grade_rejects_everything_but_plain_decimals['5.'] _____
+
+text = '5.'
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "",
+            "abc",
+            "9o",
+            "nan",
+            "inf",
+            "101",
+            "-1",
+            "-0",
+            "+90",
+            "90,5",
+            "1e2",
+            "9_0",
+            "\u0669\u0660",
+            ".5",
+            "5.",
+        ],
+        ids=repr,
+    )
+    def test_parse_average_grade_rejects_everything_but_plain_decimals(
+        text: str,
+    ) -> None:
+>       with pytest.raises(InvalidGradeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE InvalidGradeError
+
+tests\unit\test_validators.py:98: Failed
+________________ test_negative_zero_is_stored_as_positive_zero ________________
+
+    def test_negative_zero_is_stored_as_positive_zero() -> None:
+>       assert math.copysign(1.0, validate_average_grade(-0.0)) == 1.0
+E       assert -1.0 == 1.0
+E        +  where -1.0 = <built-in function copysign>(1.0, -0.0)
+E        +    where <built-in function copysign> = math.copysign
+E        +    and   -0.0 = validate_average_grade(-0.0)
+
+tests\unit\test_validators.py:103: AssertionError
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.12.10-final-0 _______________
+
+Name                                  Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------------
+src\student_manager\__init__.py           4      0      0      0   100%
+src\student_manager\config.py            65      0     20      0   100%
+src\student_manager\exceptions.py        22      0      0      0   100%
+src\student_manager\exporters.py         16      0      0      0   100%
+src\student_manager\importers.py         56      0     14      0   100%
+src\student_manager\main.py              34      0      2      0   100%
+src\student_manager\models.py            31      0      8      0   100%
+src\student_manager\reports.py           13      0      2      0   100%
+src\student_manager\repositories.py      40      0      4      0   100%
+src\student_manager\services.py          99      0     12      0   100%
+src\student_manager\validators.py        40      0     14      0   100%
+---------------------------------------------------------------------------------
+TOTAL                                   420      0     76      0   100%
+Required test coverage of 90.0% reached. Total coverage: 100.00%
+=========================== short test summary info ===========================
+ERROR tests/unit/test_exporters.py::test_circular_structure_raises_export_error_and_keeps_old_file
+FAILED tests/unit/test_configuration.py::test_non_text_path_raises_configuration_error[list-input_path]
+FAILED tests/unit/test_configuration.py::test_non_text_path_raises_configuration_error[list-output_path]
+FAILED tests/unit/test_configuration.py::test_non_text_path_raises_configuration_error[int-input_path]
+FAILED tests/unit/test_configuration.py::test_non_text_path_raises_configuration_error[int-output_path]
+FAILED tests/unit/test_configuration.py::test_non_text_path_raises_configuration_error[map-input_path]
+FAILED tests/unit/test_configuration.py::test_non_text_path_raises_configuration_error[map-output_path]
+FAILED tests/unit/test_configuration.py::test_non_text_path_raises_configuration_error[bool-input_path]
+FAILED tests/unit/test_configuration.py::test_non_text_path_raises_configuration_error[bool-output_path]
+FAILED tests/unit/test_exporters.py::test_non_finite_number_is_not_exported_as_invalid_json[nan]
+FAILED tests/unit/test_exporters.py::test_non_finite_number_is_not_exported_as_invalid_json[inf]
+FAILED tests/unit/test_exporters.py::test_circular_structure_raises_export_error_and_keeps_old_file
+FAILED tests/unit/test_validators.py::test_parse_average_grade_rejects_everything_but_plain_decimals['-0']
+FAILED tests/unit/test_validators.py::test_parse_average_grade_rejects_everything_but_plain_decimals['+90']
+FAILED tests/unit/test_validators.py::test_parse_average_grade_rejects_everything_but_plain_decimals['1e2']
+FAILED tests/unit/test_validators.py::test_parse_average_grade_rejects_everything_but_plain_decimals['9_0']
+FAILED tests/unit/test_validators.py::test_parse_average_grade_rejects_everything_but_plain_decimals['\u0669\u0660']
+FAILED tests/unit/test_validators.py::test_parse_average_grade_rejects_everything_but_plain_decimals['.5']
+FAILED tests/unit/test_validators.py::test_parse_average_grade_rejects_everything_but_plain_decimals['5.']
+FAILED tests/unit/test_validators.py::test_negative_zero_is_stored_as_positive_zero
+19 failed, 269 passed, 1 error in 1.82s

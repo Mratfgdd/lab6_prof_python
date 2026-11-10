@@ -1,33 +1,24 @@
-........F.................................FF............................ [ 36%]
-......................................................FFF.FFF........... [ 73%]
-...................................................                      [100%]
-================================== FAILURES ===================================
-E   FileExistsError: [WinError 183] Cannot create a file when that file already exists: '<tmp>\\pytest-77\\test_cli_reports_output_path_b0\\blocked'
-pathlib.py:1311: FileExistsError: [WinError 183] Cannot create a file when that file already exists: '<tmp>\\pytest-77\\test_cli_reports_output_path_b0\\blocked'
-E   Failed: DID NOT RAISE ConfigurationError
-tests\unit\test_configuration.py:103: Failed: DID NOT RAISE ConfigurationError
-E   Failed: DID NOT RAISE ConfigurationError
-tests\unit\test_configuration.py:103: Failed: DID NOT RAISE ConfigurationError
-E   AttributeError: 'NoneType' object has no attribute 'strip'
-src\student_app\models.py:11: AttributeError: 'NoneType' object has no attribute 'strip'
-E   AttributeError: 'int' object has no attribute 'strip'
-src\student_app\models.py:11: AttributeError: 'int' object has no attribute 'strip'
-E   Failed: DID NOT RAISE InvalidStudentError
-tests\unit\test_models.py:56: Failed: DID NOT RAISE InvalidStudentError
-E   TypeError: 'NoneType' object is not iterable
-src\student_app\models.py:37: TypeError: 'NoneType' object is not iterable
-E   student_app.exceptions.InvalidGradeError: оцінка має бути числом, отримано '9'
-src\student_app\grading.py:12: student_app.exceptions.InvalidGradeError: оцінка має бути числом, отримано '9'
-E   TypeError: 'int' object is not iterable
-src\student_app\models.py:37: TypeError: 'int' object is not iterable
-=========================== short test summary info ===========================
-FAILED tests/integration/test_application_flow.py::test_cli_reports_output_path_blocked_by_a_file
-FAILED tests/unit/test_configuration.py::test_invalid_configuration_raises_configuration_error[input-null]
-FAILED tests/unit/test_configuration.py::test_invalid_configuration_raises_configuration_error[output-empty]
-FAILED tests/unit/test_models.py::test_student_rejects_invalid_required_fields[group-none]
-FAILED tests/unit/test_models.py::test_student_rejects_invalid_required_fields[group-number]
-FAILED tests/unit/test_models.py::test_student_rejects_invalid_required_fields[group-unicode-digits]
-FAILED tests/unit/test_models.py::test_student_rejects_grades_that_are_not_a_sequence[none]
-FAILED tests/unit/test_models.py::test_student_rejects_grades_that_are_not_a_sequence[text]
-FAILED tests/unit/test_models.py::test_student_rejects_grades_that_are_not_a_sequence[number]
-9 failed, 186 passed in 0.37s
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+........................................................................ [ 81%]
+..................................................                       [100%]
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.12.10-final-0 _______________
+
+Name                                  Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------------
+src\student_manager\__init__.py           4      0      0      0   100%
+src\student_manager\config.py            65      0     20      0   100%
+src\student_manager\exceptions.py        22      0      0      0   100%
+src\student_manager\exporters.py         16      0      0      0   100%
+src\student_manager\importers.py         56      0     14      0   100%
+src\student_manager\main.py              34      0      2      0   100%
+src\student_manager\models.py            31      0      8      0   100%
+src\student_manager\reports.py           13      0      2      0   100%
+src\student_manager\repositories.py      40      0      4      0   100%
+src\student_manager\services.py          99      0     12      0   100%
+src\student_manager\validators.py        40      0     14      0   100%
+---------------------------------------------------------------------------------
+TOTAL                                   420      0     76      0   100%
+Required test coverage of 90.0% reached. Total coverage: 100.00%
+266 passed in 0.86s

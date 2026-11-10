@@ -1,4 +1,6 @@
-from student_app.grading import classify_grade
+"""Експеримент 3: два тести залишають непокритими середні гілки."""
+
+from student_manager.models import classify_grade
 
 
 def test_excellent() -> None:

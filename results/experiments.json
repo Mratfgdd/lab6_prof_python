@@ -8,9 +8,9 @@
       "test_average_weak": "passed",
       "test_average_strong": "failed"
     },
-    "models_coverage": {
-      "test_average_weak": 75.9,
-      "test_average_strong": 75.9
+    "services_coverage": {
+      "test_average_weak": 36.0,
+      "test_average_strong": 36.0
     }
   },
   "branch_partial": {
@@ -19,12 +19,12 @@
     "percent": 66.7,
     "missing": [
       [
-        29,
-        30
+        20,
+        21
       ],
       [
-        31,
-        32
+        22,
+        23
       ]
     ]
   },
@@ -53,9 +53,9 @@
   },
   "isolation": {
     "tmp_paths": [
-      "pytest-84/test_export_into_tmp_path0",
-      "pytest-85/test_export_into_tmp_path0",
-      "pytest-86/test_export_into_tmp_path0"
+      "pytest-253/test_export_into_tmp_path0",
+      "pytest-254/test_export_into_tmp_path0",
+      "pytest-255/test_export_into_tmp_path0"
     ],
     "distinct": true,
     "repository_changed": []
